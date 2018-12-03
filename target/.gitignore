@@ -1,1 +1,5 @@
 /classes/
+.settings/*
+target/*
+messages.properties
+jdbc.properties 
