@@ -1,0 +1,197 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com</groupId>
+	<artifactId>PortfolioManageSys</artifactId>
+	<packaging>war</packaging>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>Portfolio</name>
+	<url>http://maven.apache.org</url>
+	<dependencies>
+
+		<!-- https://mvnrepository.com/artifact/junit/junit -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.12</version>
+			<scope>test</scope>
+		</dependency>
+
+
+		 <!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api  -->
+		<dependency> 
+			<groupId>javax.servlet</groupId> 
+			<artifactId>javax.servlet-api</artifactId> 
+			<version>4.0.1</version> 
+			<scope>provided</scope> 
+		</dependency> 
+
+
+
+
+		<!-- log4j keep the log information -->
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.17</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/commons-logging/commons-logging -->
+		<dependency>
+			<groupId>commons-logging</groupId>
+			<artifactId>commons-logging</artifactId>
+			<version>1.2</version>
+		</dependency>
+
+
+		<!-- for java data persistence -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>5.3.6.Final</version>
+		</dependency>
+
+
+		<!-- https://mvnrepository.com/artifact/org.springframework/spring-context -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>5.1.1.RELEASE</version>
+		</dependency>
+
+		<!-- web则对远程调用和远程服务的支持。 -->
+		<!-- https://mvnrepository.com/artifact/org.springframework/spring-web -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+			<version>5.1.1.RELEASE</version>
+		</dependency>
+
+		<!-- webmvc主要是对mvc的支持，包括restful协议 -->
+		<!-- https://mvnrepository.com/artifact/org.springframework/spring-webmvc -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>5.1.1.RELEASE</version>
+		</dependency>
+
+		<!-- 事务 -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-tx</artifactId>
+			<version>5.1.1.RELEASE</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.springframework/spring-test -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<version>5.1.1.RELEASE</version>
+		</dependency>
+
+
+		<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>8.0.12</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.springframework/spring-jdbc -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+			<version>5.1.1.RELEASE</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.springframework/spring-orm -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-orm</artifactId>
+			<version>5.1.1.RELEASE</version>
+		</dependency>
+
+		<!-- <dependency> <groupId>javax.annotation</groupId> <artifactId>javax.annotation-api</artifactId> 
+			<version>1.3.2</version> </dependency> -->
+
+
+		<!-- https://mvnrepository.com/artifact/org.springframework/spring-aop -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aop</artifactId>
+			<version>5.1.2.RELEASE</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.aspectj/aspectjweaver -->
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjweaver</artifactId>
+			<version>1.9.2</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/jstl/jstl -->
+		<dependency>
+			<groupId>jstl</groupId>
+			<artifactId>jstl</artifactId>
+			<version>1.2</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/com.mchange/c3p0 -->
+		<dependency>
+			<groupId>com.mchange</groupId>
+			<artifactId>c3p0</artifactId>
+			<version>0.9.5.2</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-c3p0 -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-c3p0</artifactId>
+			<version>5.3.7.Final</version>
+		</dependency>
+
+	</dependencies>
+
+
+
+	<build>
+		<plugins>
+
+ 			<plugin>
+				<groupId>org.apache.tomcat.maven</groupId>
+				<artifactId>tomcat7-maven-plugin</artifactId>
+				<version>2.2</version>
+
+				<configuration>
+					<url>http://localhost:8080/manager/text</url>               <!--  //tomcat7部署管理路径 -->
+					<username>admin</username>                                <!-- //tomcat的管理员账号 -->
+					<password>admin</password>
+					<port>8080</port>
+					<path>/</path>
+					<uriEncoding>UTF-8</uriEncoding>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>2.9.1</version>
+				<configuration>
+					<aggregate>true</aggregate>
+					<reportOutputDirectory>../javadocs</reportOutputDirectory>  <!-- javadoc的输出目录 -->
+					<destDir>security-javadoc</destDir>  <!-- 生成的javadoc文件名称 -->
+					<javadocExecutable>${java.home}bin/javadoc</javadocExecutable>
+					<tags>  <!-- 自定义标签组 -->
+						<tag>  <!-- 自定义标签 -->
+							<name>Description</name>  <!-- 自定义标签的名称 -->
+							<placement>a</placement>  <!-- maven提供的8种标签范围 -->
+							<head>功能描述:</head>  <!-- 描述 -->
+						</tag>
+					</tags>
+				</configuration>
+			</plugin>
+		</plugins>
+		<!-- <finalName>PortfolioManageSys</finalName> -->
+	</build>
+</project>

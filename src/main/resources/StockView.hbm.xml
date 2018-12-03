@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping
+        PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+        
+        
+<hibernate-mapping package="pojoView">
+	<class name="StockView" table="stockview">
+		<id name="assetId" column = "assetId" type="java.lang.Integer">
+			<generator class="native" />
+		</id>
+		
+		<property name="assetCode" column="assetCode" type="java.lang.String"/>
+		<property name="assetLabel" column="assetLabel" type="java.lang.String"/>
+		<property name="quarterlyDividend" column="quarterlyDividend" type="java.lang.Double"/>
+		<property name="baseRateOfReturn" column="baseRateOfReturn" type="java.lang.Double"/>
+		<property name="sharePrice" column="sharePrice" type="java.lang.Double"/>
+		<property name="beta" column="beta" type="java.lang.Double"/>
+
+		
+	</class>
+	
+	
+</hibernate-mapping>

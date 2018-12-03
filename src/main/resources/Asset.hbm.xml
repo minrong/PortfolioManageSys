@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping
+        PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+        
+        
+<hibernate-mapping package="pojo">
+	<!-- 这里discriminator-value="Asset"对应的是数据库里面的table -->
+	<class name="Asset" table="Asset">
+		<id name="assetId" column = "assetId" type="java.lang.Integer">
+			<generator class="native" />
+		</id>
+		
+		<discriminator column="accountType" type="java.lang.String"></discriminator>
+		
+		<property name="code" column="assetCode" type="java.lang.String"/>
+		<property name="label" column="assetLabel" type="java.lang.String"/>
+		
+		
+		
+		<subclass name = "Stock" discriminator-value="S">
+			<property name="quarterlyDividend" column="quarterlyDividend" type="java.lang.Double"/>
+			<property name="baseRateOfReturn" column="baseRateOfReturn" type="java.lang.Double"/>
+			<property name="sharePrice" column="sharePrice" type="java.lang.Double"/>
+			<property name="beta" column="beta" type="java.lang.Double"/>
+		</subclass>
+		
+		<subclass name = "PrivateInvestment" discriminator-value="P">
+			<property name="quarterlyDividend" column="quarterlyDividend" type="java.lang.Double"/>
+			<property name="baseRateOfReturn" column="baseRateOfReturn" type="java.lang.Double"/>
+			<property name="omegaBase" column="omegaBase" type="java.lang.Double"/>
+			<property name="totalValue" column="valueOfPrivateInvestment" type="java.lang.Double"/>
+		</subclass>
+		
+		<subclass name = "DepositAccount" discriminator-value="D">
+			<property name="apr" column="apr" type="java.lang.Double"/>
+		</subclass>
+		
+		
+	</class>
+	
+	
+</hibernate-mapping>

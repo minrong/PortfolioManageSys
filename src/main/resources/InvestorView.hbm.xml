@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<!DOCTYPE hibernate-mapping
+        PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+        
+        
+<hibernate-mapping package="pojoView">
+	<class name="InvestorView" table="investorview">
+		<id name="personId" column = "personId" type="java.lang.Integer">
+			<generator class="native" />
+		</id>
+		
+		<property name="personCode" column="personCode" type="java.lang.String"/>
+		<property name="firstName" column="firstName" type="java.lang.String"/>
+		<property name="lastName" column="lastName" type="java.lang.String"/>
+		<property name="country" column="country" type="java.lang.String"/>
+		<property name="state" column="state" type="java.lang.String"/>
+		<property name="street" column="street" type="java.lang.String"/>
+		
+	</class>
+	
+	
+</hibernate-mapping>

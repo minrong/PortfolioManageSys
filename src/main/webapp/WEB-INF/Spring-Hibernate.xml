@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans 
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation=
+	 "http://www.springframework.org/schema/beans
+      http://www.springframework.org/schema/beans/spring-beans.xsd
+      http://www.springframework.org/schema/context
+      http://www.springframework.org/schema/context/spring-context.xsd
+      http://www.springframework.org/schema/mvc
+      http://www.springframework.org/schema/mvc/spring-mvc.xsd
+      http://www.springframework.org/schema/tx 
+      http://www.springframework.org/schema/tx/spring-tx.xsd
+      http://www.springframework.org/schema/aop 
+      http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+	<context:component-scan
+		base-package="dao,pojo,service,pojoView" />
+	<aop:aspectj-autoproxy proxy-target-class="true" />
+	<!-- 引入property配置文件 -->
+	<context:property-placeholder
+		location="/WEB-INF/jdbc.properties" />
+	<!-- 配置数据源 -->
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName"
+			value="${jdbc.mysql.driverClassName}" />
+		<property name="url" value="${jdbc.mysql.url}" />
+		<property name="username" value="${jdbc.mysql.username}" />
+		<property name="password" value="${jdbc.mysql.password}" />
+	</bean>
+
+	<!-- 配置hibernate SessionFactory with a spring plug in -->
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+
+		<!-- hibernate自动扫描 实体类 -->
+		<property name="packagesToScan">
+			<list>
+				<value>pojoView</value>
+				<value>pojo</value>
+			</list>
+		</property>
+
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">${jdbc.mysql.dialect}</prop>
+				<prop key="hibernate.hbm2ddl.auto">${jdbc.hibernate.hbm2ddl.auto}</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hiberante.format_sql">true</prop>
+			</props>
+		</property>
+
+		<property name="configLocations">
+			<list>
+				<value>classpath*:hibernate.cfg.xml</value>
+			</list>
+		</property>
+		<property name="mappingLocations">
+			<list>
+				<value>classpath:*.hbm.xml</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- Spring并不直接管理事务，而是提供了多种事务管理器， 他们将事务管理的职责委托给Hibernate或者JTA等持久化机制所提供的相关平台框架的事务来实现。 -->
+	<!-- 如果应用程序的持久化是通过Hibernate实行的，那么你需要使用HibernateTransactionManager。 对于Hibernate3，需要在Spring上下文定义中添加如下的<bean>声明： -->
+	<!-- sessionFactory属性需要装配一个Hibernate的session工厂， HibernateTransactionManager的实现细节是它将事务管理的职责委托给org.hibernate.Transaction对象， 
+		而后者是从Hibernate Session中获取到的。当事务成功完成时， HibernateTransactionManager将会调用Transaction对象的commit()方法， 
+		反之，将会调用rollback()方法。 -->
+	<!-- 事务管理器 -->
+ 	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+
+ 	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="add*" propagation="REQUIRED" read-only="true"/>
+			<tx:method name="list*" propagation="REQUIRED" read-only="true"/>
+			<tx:method name="*" propagation="SUPPORTS" read-only="true" />     
+		</tx:attributes>
+	</tx:advice>
+	  
+	<tx:annotation-driven/>
+
+
+
+
+
+
+
+</beans>  

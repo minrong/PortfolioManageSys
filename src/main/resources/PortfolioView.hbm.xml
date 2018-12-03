@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping
+        PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+        
+        
+<hibernate-mapping package="pojoView">
+	<class name="PortfolioView" table="portfolioview">
+		<id name="portfolioId" column = "portfolioId" type="java.lang.Integer">
+			<generator class="native" />
+		</id>
+		
+		<property name="portfolioCode" column="portfolioCode" type="java.lang.String"/>
+		<property name="ownerFirstName" column="ownerFirstName" type="java.lang.String"/>
+		<property name="ownerLastName" column="ownerLastName" type="java.lang.String"/>
+		<property name="beneficiaryFirstName" column="beneficiaryFirstName" type="java.lang.String"/>
+		<property name="beneficiaryLastName" column="beneficiaryLastName" type="java.lang.String"/>
+			
+		<property name="managerFirstName" column="managerFirstName" type="java.lang.String"/>
+		<property name="managerLastName" column="managerLastName" type="java.lang.String"/>
+		
+		<property name="value" column="values_" type="java.lang.Double"/>
+		<property name="aggregatedRisk" column="aggregatedRisk" type="java.lang.Double"/>
+		<property name="annualReturn" column="annualReturn" type="java.lang.Double"/>
+			
+		<property name="fee" column="fee" type="java.lang.Double"/>
+		<property name="commission" column="commission" type="java.lang.Double"/>
+
+		
+	</class>
+	
+	
+</hibernate-mapping>
